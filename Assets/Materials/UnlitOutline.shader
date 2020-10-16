@@ -20,15 +20,19 @@
             CGPROGRAM
 
             #pragma surface surf Standard fullforwardshadows
+           // #pragma target 3.0
 
-            Input1 {
-                float4 color : COLOR
-            }
+
+            
+
+           struct Input1 {
+                float4 color : COLOR;
+            };
 
             half4 _Color;
             half _Glossiness;
             half _Metallic;
-
+            //sampler2D _Color;
             void surf(Input1 IN, inout SufaceStandardOutput o) {
                 o.Albedo = _Color.rgb * IN.color.rgb;
                 o.Smoothness = _Glossiness;

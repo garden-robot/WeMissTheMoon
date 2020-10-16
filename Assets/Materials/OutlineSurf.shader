@@ -1,7 +1,6 @@
 ﻿Shader "Tutorial/Outline" {
 
     Properties{
-
         _Color("Color", Color) = (1, 1, 1, 1)
         _Glossiness("Smoothness", Range(0, 1)) = 0.5
         _Metallic("Metallic", Range(0, 1)) = 0
@@ -18,19 +17,25 @@
             }
 
             CGPROGRAM
-
+            
+       
             #pragma surface surf Standard fullforwardshadows
-            //sampler2D _MainTex;
+            #pragma target 3.0
+            
+           // sampler2D _MainTex;
 
-           struct Input1 {
-                float4 color : COLOR;
+        
+           struct Input {
+               float4 color: COLOR;
+
             };
 
-            half4 _Color;
-            half _Glossiness;
-            half _Metallic;
+           half4 _Color;
+           half _Glossiness;
+           half _Metallic;
 
-            void surf(Input1 IN, inout SufaceOutputStandard o) {
+            void surf(Input IN, inout SufaceOutputStandard o) {
+            
                 o.Albedo = _Color.rgb * IN.color.rgb;
                 o.Smoothness = _Glossiness;
                 o.Metallic = _Metallic;
@@ -56,11 +61,10 @@
 
             float4 clipPosition = UnityObjectToClipPos(position);
             float3 clipNormal = mul((float3x3) UNITY_MATRIX_VP, mul((float3x3) UNITY_MATRIX_M, normal));
-           // float2 offset = normalize(clipNormal.xy) * _OutlineWidth * clipPosition.w;
-            //clipPosition.xy += offset;
+          
             float2 offset = normalize(clipNormal.xy) / _ScreenParams.xy * _OutlineWidth * clipPosition.w * 2;
-           clipPosition.xy += offset;
-            //clipPosition.xyz += normalize(clipNormal) * _OutlineWidth;
+            clipPosition.xy += offset;
+            
 
 
             return clipPosition;
