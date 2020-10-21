@@ -14,6 +14,8 @@ public class NoteObject : MonoBehaviour
     public int AddOne = 1;
     public bool isLamp = false;
     public bool isOpeningLamp = false;
+   
+    
 
     //Inspector GameObjects
     public GameObject OpeningCutscene;
