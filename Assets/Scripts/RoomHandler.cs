@@ -5,6 +5,8 @@ using TMPro;
 
 public class RoomHandler : MonoBehaviour
 {
+    public bool RoomDone = false;
+
     public int RoomNameID;
     public int NoteTotal;
 
@@ -26,7 +28,7 @@ public class RoomHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        
 
         RoomCollider = gameObject.GetComponent<BoxCollider>();
 
@@ -48,7 +50,8 @@ public class RoomHandler : MonoBehaviour
         //NoteCounter value in StoryBeatManager
         storyBeatManager.TotalNotes_Room = NoteTotal;
 
-        storyBeatManager.RoomHandler = gameObject;
+        storyBeatManager.roomHandler = this.GetComponent<RoomHandler>();
+       
 
         NoteCounterTotal_text.text = NoteTotal.ToString();
 
@@ -58,7 +61,6 @@ public class RoomHandler : MonoBehaviour
         NoteSlash.SetActive(true);
         NoteCounterTotal.SetActive(true);
 
-       
 
     }
 
@@ -73,11 +75,14 @@ public class RoomHandler : MonoBehaviour
         //NoteTotal vs. NoteInventory[RoomNameID]
         if (storyBeatManager.NoteInventory[RoomNameID] == NoteTotal)
         {
+            RoomDone = true;
             //Note Appear Trigger
             NoteLampAppear.SetActive(true);
 
             //Effect Trigger
             EffectTrigger.SetActive(true);
+
+           
             
         }
 
@@ -88,14 +93,18 @@ public class RoomHandler : MonoBehaviour
         NoteCounter.SetActive(false);
         NoteCounterTotal.SetActive(false);
         NoteSlash.SetActive(false);
+        
 
         if (storyBeatManager.NoteInventory[RoomNameID] == NoteTotal)
         {
            
 
-            //Effect Trigger
+            //Effect Trigger false
             EffectTrigger.SetActive(false);
+
 
         }
     }
+
+
 }

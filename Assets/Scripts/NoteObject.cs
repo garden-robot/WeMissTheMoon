@@ -10,6 +10,7 @@ public class NoteObject : MonoBehaviour
     public int RoomNameID;
 
     public string CharacterName;
+    [TextArea]
     public string Message;
     public int AddOne = 1;
     public bool isLamp = false;
@@ -29,10 +30,12 @@ public class NoteObject : MonoBehaviour
     public Image note_ImageUI;
     public GameObject NoteDisplay; //Attach in Inspector
     public TMP_Text MessageUI_text;
+    public GameObject PressE_text;
 
     //Scripts
     public StoryBeatManager storyBeatManager;
     public LightOffTrigger lightOffTrigger;
+
 
     void Start()
     {
@@ -56,16 +59,19 @@ public class NoteObject : MonoBehaviour
     //Trigger Collider
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("PRESS E");
+        //Debug.Log("PRESS E");
+        PressE_text.SetActive(true);
+        storyBeatManager.RoomHandler = gameObject;
 
-        //If E is pressed
+
     }
 
     void OnTriggerStay(Collider other)
     {
         if (Input.GetKeyUp(KeyCode.E))
         {
-            Debug.Log("E key was released.");
+            PressE_text.SetActive(false);
+            //Debug.Log("E key was released.");
 
             //Pass Note to UI
             MessageUI_text.text = Message;
@@ -96,6 +102,6 @@ public class NoteObject : MonoBehaviour
 
         private void OnTriggerExit(Collider other)
     {
-        Debug.Log(" ");
+        PressE_text.SetActive(false);
     }
 }
