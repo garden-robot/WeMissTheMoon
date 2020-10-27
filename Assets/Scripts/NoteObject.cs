@@ -16,7 +16,7 @@ public class NoteObject : MonoBehaviour
     public bool isLamp = false;
     public bool isOpeningLamp = false;
 
-   
+    public bool isEnd = false;
 
     //Inspector GameObjects
     public GameObject OpeningCutscene;
@@ -37,8 +37,7 @@ public class NoteObject : MonoBehaviour
     public LightOffTrigger lightOffTrigger;
 
 
-    public bool End = false;
-
+    public GameObject End;
     void Start()
     {
         note_sprite = gameObject.GetComponent<SpriteRenderer>();
