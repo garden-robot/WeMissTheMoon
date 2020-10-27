@@ -10,7 +10,7 @@ public class NoteObject : MonoBehaviour
     public int RoomNameID;
 
     public string CharacterName;
-    [TextArea]
+    [TextArea (40,10)]
     public string Message;
     public int AddOne = 1;
     public bool isLamp = false;
