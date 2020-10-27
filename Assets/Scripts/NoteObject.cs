@@ -15,6 +15,8 @@ public class NoteObject : MonoBehaviour
     public int AddOne = 1;
     public bool isLamp = false;
     public bool isOpeningLamp = false;
+
+    public bool isEndingLamp = false;
    
     
 
@@ -68,7 +70,7 @@ public class NoteObject : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             PressE_text.SetActive(false);
             //Debug.Log("E key was released.");
