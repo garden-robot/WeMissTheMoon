@@ -16,9 +16,7 @@ public class NoteObject : MonoBehaviour
     public bool isLamp = false;
     public bool isOpeningLamp = false;
 
-    public bool isEndingLamp = false;
    
-    
 
     //Inspector GameObjects
     public GameObject OpeningCutscene;
@@ -38,6 +36,8 @@ public class NoteObject : MonoBehaviour
     public StoryBeatManager storyBeatManager;
     public LightOffTrigger lightOffTrigger;
 
+
+    public bool End = false;
 
     void Start()
     {
@@ -86,17 +86,25 @@ public class NoteObject : MonoBehaviour
             if (isLamp == false)
             {
                 storyBeatManager.NoteInventory[RoomNameID] += AddOne;
+                storyBeatManager.TotalNotes_Global += AddOne;
             }
             else
             {
+                storyBeatManager.TotalNotes_Global += AddOne;
                 lightOffTrigger.TurnLightOff();
                 if(isOpeningLamp == true)
                 {
+                    storyBeatManager.TotalNotes_Global += AddOne;
                     OpeningCutscene.GetComponent<Collider>().enabled = true;
+                    storyBeatManager.TotalNotes_Global += AddOne;
                 }
+              
             }
          
-
+            if(isEnd == true)
+            {
+                End.SetActive(true);
+            }
         }
 
         //Player movement restrict

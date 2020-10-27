@@ -20,50 +20,66 @@ public class StoryBeatManager : MonoBehaviour
     public AudioSource Library;
     public AudioSource Factory;
 
+    public GameObject endingCutsceneCam;//attahced to player
+    public GameObject oilRigTeleport;
 
+    public int Win;
+
+  
     void Start()
     {
         NoteInventory = new int[5];
 
 
-       // roomHandler = RoomHandler.GetComponent<RoomHandler>();
+
+        // roomHandler = RoomHandler.GetComponent<RoomHandler>();
         //foreach (var x in NoteInventory) Debug.Log(x.ToString());
     }
 
     // Update is called once per frame
     void Update()
     {
+      
         BathHouse.timeSamples = Shed.timeSamples;
         Factory.timeSamples = Shed.timeSamples;
         if (roomHandler != null)
         {
-            
+
             if (roomHandler.RoomDone == true)
             {
-              
-                    
 
-                    if (roomHandler.RoomNameID == 0)
-                    {
-                        Shed.enabled = true;
-                        
-                    }
 
-                    if (roomHandler.RoomNameID == 1)
-                    {
-                        BathHouse.enabled = true;
-                        BathHouse.timeSamples = Shed.timeSamples;
-                    }
-                    if (roomHandler.RoomNameID == 2)
-                    {
-                        Factory.enabled = true;
-                        Factory.timeSamples = Shed.timeSamples;
+
+                if (roomHandler.RoomNameID == 0)
+                {
+                    Shed.enabled = true;
+
                 }
+
+                if (roomHandler.RoomNameID == 1)
+                {
+                    BathHouse.enabled = true;
+                    BathHouse.timeSamples = Shed.timeSamples;
+                }
+                if (roomHandler.RoomNameID == 2)
+                {
+                    Factory.enabled = true;
+                    Factory.timeSamples = Shed.timeSamples;
                 }
             }
-            
         }
+
+        if(TotalNotes_Global == Win)
+        {
+            endingCutsceneCam.SetActive(true);
+            oilRigTeleport.SetActive(true);
+
+        }
+
+
+       
     }
+}
 
 
 

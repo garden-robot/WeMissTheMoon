@@ -1,0 +1,5 @@
+newmtl NoteMaterial
+map_Kd Note_new_sprite white.png
+Kd 1.0 1.0 1.0
+d 1.0
+
