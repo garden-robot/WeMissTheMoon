@@ -90,17 +90,19 @@ public class StoryBeatManager : MonoBehaviour
 
 
             }
+         
         }
 
-        if(TotalNotes_Global == 23)
+
+        if (TotalNotes_Global == 23)
         {
             endingCutsceneCam.SetActive(true);
             oilRigTeleport.SetActive(true);
 
+
         }
 
 
-       
     }
 }
 

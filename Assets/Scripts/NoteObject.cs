@@ -37,6 +37,8 @@ public class NoteObject : MonoBehaviour
     public StoryBeatManager storyBeatManager;
     public LightOffTrigger lightOffTrigger;
 
+    public GameObject StoryBeatManager;
+
     public GameObject EndTrigger;
     public bool IsEnding;
     void Start()
@@ -111,6 +113,7 @@ public class NoteObject : MonoBehaviour
                 if (NoteDisplay == false)
                 {
                     EndTrigger.SetActive(true);
+                    StoryBeatManager.SetActive(false);
                 }
             }
          
