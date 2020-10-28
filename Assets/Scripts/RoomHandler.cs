@@ -25,6 +25,8 @@ public class RoomHandler : MonoBehaviour
     public TMP_Text NoteCounter_text;
 
     public GameObject EffectTrigger;
+
+    public bool isEnd = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,13 +78,19 @@ public class RoomHandler : MonoBehaviour
         if (storyBeatManager.NoteInventory[RoomNameID] == NoteTotal)
         {
             RoomDone = true;
-            //Note Appear Trigger
-            NoteLampAppear.SetActive(true);
+            if (isEnd == true)
+            {
+                EffectTrigger.SetActive(true);
+            }
+            else
+            {
+                //Note Appear Trigger
+                NoteLampAppear.SetActive(true);
 
-            //Effect Trigger
-            EffectTrigger.SetActive(true);
+                //Effect Trigger
+                EffectTrigger.SetActive(true);
 
-           
+            }
             
         }
 

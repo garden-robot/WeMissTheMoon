@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
 
     public CutsceneTrigger cutsceneTrigger;
 
+    public GameObject AllNotesActivate;
+
     // Use this for initialization
     void Start()
     {
@@ -63,6 +65,7 @@ public class CameraController : MonoBehaviour
                     playerCam.SetActive(true);
                     Player.GetComponent<MouseLook>().enabled = true;
                     Player.GetComponent<CharacterController>().enabled = true;
+                    AllNotesActivate.SetActive(true);
                     Destroy(cutsceneTrigger.cutscenecollider);
                 }
             }

@@ -20,11 +20,14 @@ public double originalCutsceneCamPosZ;
 
 public CutsceneTrigger cutsceneTrigger;
 
+public float time = 20.0f;
+   
+
 // Use this for initialization
 void Start()
 {
 
-
+  
 
     currentView = views[0];
     originalCutsceneCamPosZ = 0.0;
@@ -36,13 +39,21 @@ void Update()
 
     if (cutsceneOn == true)
     {
-        Player.GetComponent<CharacterController>().enabled = false;
-        playerCam.SetActive(false);
-        gameObject.GetComponent<Camera>().enabled = true;
-        Player.GetComponent<MouseLook>().enabled = false;
-        currentView = views[1];
-
-        StartCoroutine("WaitCutscene");
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else
+            {
+                Player.GetComponent<CharacterController>().enabled = false;
+                playerCam.SetActive(false);
+                gameObject.GetComponent<Camera>().enabled = true;
+                Player.GetComponent<MouseLook>().enabled = false;
+                currentView = views[1];
+                StartCoroutine("WaitCutscene");
+                
+            }
+               
 
 
 
@@ -114,11 +125,15 @@ void LateUpdate()
 
     IEnumerator WaitCutscene()
     {
+
+
+       
+
         if (cutsceneOn = true) {
             yield return new WaitForSeconds(3);
 
             OilRigLightsOff.SetActive(true);
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(3);
             currentView = views[0];
 
 
@@ -132,5 +147,25 @@ void LateUpdate()
 
 
 
+
+
+    IEnumerator WaitBeforeCutscene()
+    {
+        if (cutsceneOn = true)
+        {
+            yield return new WaitForSeconds(3);
+
+            OilRigLightsOff.SetActive(true);
+            yield return new WaitForSeconds(3);
+            currentView = views[0];
+
+
+
+
+        }
+
+        cutsceneOn = false;
+
+    }
 }
 

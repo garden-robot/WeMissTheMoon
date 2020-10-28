@@ -16,7 +16,8 @@ public class NoteObject : MonoBehaviour
     public bool isLamp = false;
     public bool isOpeningLamp = false;
 
-    public bool isEnd = false;
+    public bool isMultiple = false;
+    public GameObject NextNote;
 
     //Inspector GameObjects
     public GameObject OpeningCutscene;
@@ -36,8 +37,8 @@ public class NoteObject : MonoBehaviour
     public StoryBeatManager storyBeatManager;
     public LightOffTrigger lightOffTrigger;
 
-
-    public GameObject End;
+    public GameObject EndTrigger;
+    public bool IsEnding;
     void Start()
     {
         note_sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -82,10 +83,16 @@ public class NoteObject : MonoBehaviour
             Destroy(note_sprite);
             Destroy(note_collider);
 
+         
+            
             if (isLamp == false)
             {
                 storyBeatManager.NoteInventory[RoomNameID] += AddOne;
                 storyBeatManager.TotalNotes_Global += AddOne;
+                if (isMultiple == true)
+                {
+                    NextNote.SetActive(true);
+                }
             }
             else
             {
@@ -95,15 +102,19 @@ public class NoteObject : MonoBehaviour
                 {
                     storyBeatManager.TotalNotes_Global += AddOne;
                     OpeningCutscene.GetComponent<Collider>().enabled = true;
-                    storyBeatManager.TotalNotes_Global += AddOne;
+                    
                 }
               
             }
-         
-            if(isEnd == true)
+            if(IsEnding == true)
             {
-                End.SetActive(true);
+                if (NoteDisplay == false)
+                {
+                    EndTrigger.SetActive(true);
+                }
             }
+         
+            
         }
 
         //Player movement restrict
